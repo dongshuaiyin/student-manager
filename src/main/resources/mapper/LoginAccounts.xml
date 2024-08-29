@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dsy.studentmanager.mapper.LoginAccountsMapper">
+
+    <select id="login" resultType="com.dsy.studentmanager.model.LoginAccounts">
+        select * from login_accounts where username = #{username} and password = #{password}
+    </select>
+
+</mapper>
