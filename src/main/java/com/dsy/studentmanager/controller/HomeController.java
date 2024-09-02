@@ -15,4 +15,19 @@ public class HomeController {
     public String index() {
         return "index";  // 返回 index.html
     }
+
+    @GetMapping("/student")
+    public String student() {
+        return "student";  // 返回 index.html
+    }
+
+    @GetMapping("/home")
+    public String home() {
+        return "home";  // 返回 index.html
+    }
+
+    @GetMapping("/teachers")
+    public String teachers() {
+        return "teachers";  // 返回 index.html
+    }
 }

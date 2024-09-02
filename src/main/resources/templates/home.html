@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理系统</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Header 样式 */
+        .header {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .header .user-info {
+            font-size: 16px;
+        }
+
+        /* 主布局样式 */
+        .main {
+            display: flex;
+            flex-grow: 1;
+            height: calc(100vh - 60px); /* 根据 header 高度调整 */
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #fff;
+            display: block;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .sidebar a.active {
+            background-color: #4CAF50;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<!-- Header 显示用户信息 -->
+<div class="header">
+    <h1>后台管理系统</h1>
+    <div class="user-info">
+        登录用户: <strong>张三</strong>
+    </div>
+</div>
+
+<!-- 主布局 -->
+<div class="main">
+    <!-- 侧边栏导航 -->
+    <div class="sidebar">
+        <a href="#" class="tab-link active" data-page="pages/dashboard.html">首页</a>
+        <a href="#" class="tab-link" data-page="pages/profile.html">个人信息管理</a>
+        <a href="#" class="tab-link" data-page="student">学生成绩管理</a>
+        <a href="#" class="tab-link" data-page="pages/courses.html">课程管理</a>
+        <a href="#" class="tab-link" data-page="teachers">教师管理</a>
+        <a href="#" class="tab-link" data-page="pages/settings.html">系统设置</a>
+    </div>
+
+    <!-- 内容区域 -->
+    <!-- Content Area -->
+    <div class="content">
+        <iframe id="content-frame" src=""></iframe>
+    </div>
+</div>
+
+<!-- JavaScript 实现动态内容加载 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const links = document.querySelectorAll(".tab-link");
+
+        links.forEach(link => {
+            link.addEventListener("click", function(e) {
+                e.preventDefault();
+
+                // 移除所有链接的 active 类
+                links.forEach(l => l.classList.remove("active"));
+
+                // 为当前点击的链接添加 active 类
+                this.classList.add("active");
+
+                // 获取要加载的页面路径
+                const page = this.getAttribute("data-page");
+                loadPage(page);
+            });
+        });
+
+        function loadPage(pageUrl) {
+            document.getElementById('content-frame').src = pageUrl;
+        }
+
+        // 加载默认页面（首页）
+        loadPage('pages/dashboard.html');
+    });
+</script>
+</body>
+</html>
